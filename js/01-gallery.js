@@ -1,8 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-console.log(galleryItems);
-
 const newGallery = document.querySelector(".gallery");
 
 const newItemsGallery = galleryItems
@@ -20,15 +18,14 @@ const newItemsGallery = galleryItems
   })
   .join("");
 
-newGallery.insertAdjacentHTML("afterbegin", newItemsGallery);
-newGallery.addEventListener("click", onClick);
+const onClick = (evt) => {
+  evt.preventDefault();
 
-function onClick(event) {
-  event.preventDefault();
-  if (event.target === event.currentTarget) {
+  if (evt.target === evt.currentTarget) {
     return;
   }
-  const imgList = event.target.closest(".gallery__image");
+
+  const imgList = evt.target.closest(".gallery__image");
   const currentList = imgList.dataset.source;
   const currentDescription = imgList.alt;
 
@@ -36,10 +33,13 @@ function onClick(event) {
     `<img src="${currentList}" alt="${currentDescription}"/>`
   );
   instance.show();
-  newGallery.addEventListener("keydown", (event) => {
-    if (event.code === "Escape") {
+
+  newGallery.addEventListener("keydown", (evt) => {
+    if (evt.code === "Escape") {
       instance.close();
     }
   });
-}
+};
 
+newGallery.insertAdjacentHTML("afterbegin", newItemsGallery);
+newGallery.addEventListener("click", onClick);
