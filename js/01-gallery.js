@@ -1,5 +1,4 @@
 import { galleryItems } from "./gallery-items.js";
-// Change code below this line
 
 const newGallery = document.querySelector(".gallery");
 
@@ -18,12 +17,10 @@ const newItemsGallery = galleryItems
   })
   .join("");
 
-const onClick = (evt) => {
+const onClick = evt => {
   evt.preventDefault();
 
-  if (evt.target === evt.currentTarget) {
-    return;
-  }
+  if (evt.target === evt.currentTarget) return;
 
   const imgList = evt.target.closest(".gallery__image");
   const currentList = imgList.dataset.source;
@@ -34,7 +31,7 @@ const onClick = (evt) => {
   );
   instance.show();
 
-  newGallery.addEventListener("keydown", (evt) => {
+  newGallery.addEventListener("keydown", evt => {
     if (evt.code === "Escape") {
       instance.close();
     }
