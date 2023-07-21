@@ -19,14 +19,7 @@ const newItemsGallery = galleryItems
   })
   .join("");
 
-const onClick = evt => {
-  if (evt.target === evt.currentTarget) {
-    return;
-  }
-};
-
 newGallery.insertAdjacentHTML("afterbegin", newItemsGallery);
-newGallery.addEventListener("click", onClick);
 
 const lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
